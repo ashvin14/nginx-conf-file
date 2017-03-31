@@ -1,0 +1,36 @@
+##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# http://wiki.nginx.org/Pitfalls
+# http://wiki.nginx.org/QuickStart
+# http://wiki.nginx.org/Configuration
+#
+# Generally, you will want to move this file somewhere, and start with a clean
+# file but keep this around for reference. Or just disable in sites-enabled.
+
+server{
+server_name projects.com;
+	 location / {
+  	 root /home/ashvin/Desktop/projects/frontEnd;
+  	 index index.html;
+	  }
+	
+error_page 404 /custom_404.html;
+ 
+location = /custom_404.html{
+ 	root /home/ashvin/Desktop/projects/frontEnd;
+	internal;
+}
+       error_page 500 501 502 503 504 /custom_500.html;
+
+	location = /custom_500.html{
+	root /home/ashvin/Desktop/projects/frontEnd;
+	internal;
+
+	}
+	location /testing{
+	fastcgi_pass unix:/doesnt/exit;
+
+	}
+
+}
